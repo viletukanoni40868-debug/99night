@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL7RYZFWXS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QL7RYZFWXS');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Recharge</title>
+    <link href="" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #007BFF;
+            --primary-gradient: linear-gradient(135deg, #007BFF, #0056b3);
+            --secondary: #FFC107;
+            --dark: #1A1A1A;
+            --light: #FFF5F5;
+            --success: #28A745;
+            --white: #FFFFFF;
+            --glass: rgba(0, 123, 255, 0.1);
+            --glass-border: rgba(0, 123, 255, 0.2);
+            --text-color: var(--white);
+            --bg-color: var(--dark);
+            --gradient-color-1: rgba(0, 123, 255, 0.1);
+            --gradient-color-2: rgba(255, 193, 7, 0.1);
+            --toggle-bg-dark: var(--white);
+            --toggle-icon-dark: #1A1A1A;
+            --toggle-shadow-dark: rgba(0, 123, 255, 0.2);
+            --toggle-bg-light: #1A1A1A;
+            --toggle-icon-light: var(--white);
+            --toggle-shadow-light: rgba(255, 193, 7, 0.2);
+        }
+        body.light-mode {
+            --primary: #007BFF;
+            --primary-gradient: linear-gradient(135deg, #007BFF, #0056b3);
+            --secondary: #FFC107;
+            --dark: #FFF5F5;
+            --light: #1A1A1A;
+            --white: #1A1A1A;
+            --glass: rgba(0, 123, 255, 0.05);
+            --glass-border: rgba(0, 123, 255, 0.15);
+            --text-color: #1A1A1A;
+            --bg-color: #FFF5F5;
+            --gradient-color-1: rgba(0, 123, 255, 0.05);
+            --gradient-color-2: rgba(255, 193, 7, 0.05);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 15% 50%, var(--gradient-color-1) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, var(--gradient-color-2) 0%, transparent 50%);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .page {
+            min-height: 100vh;
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo-container {
+            background: var(--glass);
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-5deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: var(--light);
+            font-size: 1.1rem;
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+        .steps {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+            direction: ltr;
+        }
+        .step {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin: 0 5px;
+            position: relative;
+            border: 2px solid var(--glass-border);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .step.active {
+            background: var(--primary-gradient);
+            border: none;
+        }
+        .step.completed {
+            background: var(--success);
+            border: none;
+        }
+        .step::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            width: 20px;
+            height: 2px;
+            background: var(--glass-border);
+            transition: background 0.3s ease;
+        }
+        .step:last-child::after {
+            display: none;
+        }
+        .input-group {
+            margin-bottom: 25px;
+        }
+        .label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-align: left;
+            direction: ltr;
+        }
+        .input {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+            direction: ltr;
+        }
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+        .input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        body.light-mode .input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .platforms {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .platform-option {
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        .platform-option:hover {
+            transform: translateY(-5px);
+        }
+        .platform-option.selected {
+            border-color: var(--primary);
+            background: rgba(0, 123, 255, 0.1);
+        }
+        .platform-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .coins-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .coins-option {
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+        .coins-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+        }
+        .coins-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-gradient);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        .btn:hover::before {
+            transform: translateX(100%);
+            transition: transform 0.8s ease;
+        }
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background: var(--glass);
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 30px 0;
+            transition: background 0.3s ease;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: progressShine 1.5s linear infinite;
+        }
+        @keyframes progressShine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .status-text {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            color: var(--light);
+            transition: color 0.3s ease;
+        }
+        .counter {
+            font-size: 5rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 30px 0;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Arial', sans-serif;
+        }
+        .verify-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .theme-toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        body:not(.light-mode) .theme-toggle-button {
+            background-color: var(--toggle-bg-dark);
+            border: 1px solid var(--white);
+            box-shadow: 0 5px 15px var(--toggle-shadow-dark);
+        }
+        body.light-mode .theme-toggle-button {
+            background-color: var(--toggle-bg-light);
+            border: 1px solid var(--dark);
+            box-shadow: 0 5px 15px var(--toggle-shadow-light);
+        }
+        .theme-toggle-button img {
+            width: 24px;
+            height: 24px;
+            transition: filter 0.3s ease;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .title {
+                font-size: 2rem;
+            }
+            .coins-options {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .coins-option {
+                padding: 12px;
+            }
+            .coins-icon {
+                width: 35px;
+                height: 35px;
+            }
+            .coins-amount {
+                font-size: 1.2rem;
+            }
+            .counter {
+                font-size: 4rem;
+            }
+            .theme-toggle-button {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            .theme-toggle-button img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .profile-section {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .profile-card {
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: inline-block;
+        }
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .verification-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0;
+            color: var(--text-color);
+        }
+
+        .verification-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .verification-buttons .btn {
+            width: auto;
+            min-width: 100px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-secondary {
+            background: var(--glass);
+            color: var(--text-color);
+            border: 2px solid var(--glass-border);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            color: white;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+        
+        .error-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            text-align: center;
+            color: var(--text-color);
+        }
+        
+        .error-content h3 {
+            margin-bottom: 15px;
+            color: #ff4444;
+        }
+        
+        .error-content p {
+            margin-bottom: 20px;
+        }
+        
+        .error-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .error-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .error-btn.primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+        }
+        
+        .error-btn.secondary {
+            background: var(--glass);
+            color: var(--text-color);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .human-verification-message {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .adblu-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* New styles for sending diamonds page */
+        .sending-diamonds-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .sending-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .sending-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 10px 0;
+            color: var(--text-color);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <link rel="me" href="https://www.blogger.com/profile/08115489295264897139" />
+    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
+<link rel="me" href="https://www.blogger.com/profile/08093615751670618814" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+</head>
+<body>
+    <button class="theme-toggle-button" onclick="toggleTheme()">
+        <img id="theme-icon" src="https://i.postimg.cc/BQqJ59vT/6714978.png" alt="Dark Mode">
+    </button>
+
+    <!-- Step 1: Diamond Amount Selection -->
+    <div id="coins-page" class="page active">
+        <div class="container">
+            <div class="glass-card">
+                <header class="header">
+                    <div class="logo-container">
+                        <img src="https://i.postimg.cc/QCHCr8pd/Site-community-image.png" alt="99 Night in the Forest Logo" class="logo">
+                    </div>
+                    <h1 class="title">free diamond</h1>
+                    <p class="subtitle">choose the desired diamond amount</p>
+                </header>
+                <div class="steps">
+                    <div class="step active">1</div>
+                    <div class="step">2</div>
+                    <div class="step">3</div>
+                </div>
+                
+                <div class="coins-options">
+                    <div class="coins-option" onclick="selectCoins(300, this)">
+                        <img src="https://i.postimg.cc/zB9ZV8sB/Diamond-Icon.png" alt="Diamond" class="coins-icon">
+                        <div class="coins-amount">300</div>
+                        <div>Diamond</div>
+                    </div>
+                    <div class="coins-option" onclick="selectCoins(700, this)">
+                        <img src="https://i.postimg.cc/zB9ZV8sB/Diamond-Icon.png" alt="Diamond" class="coins-icon">
+                        <div class="coins-amount">700</div>
+                        <div>Diamond</div>
+                    </div>
+                    <div class="coins-option" onclick="selectCoins(1500, this)">
+                        <img src="https://i.postimg.cc/zB9ZV8sB/Diamond-Icon.png" alt="Diamond" class="coins-icon">
+                        <div class="coins-amount">1500</div>
+                        <div>Diamond</div>
+                    </div>
+                    <div class="coins-option" onclick="selectCoins(2500, this)">
+                        <img src="https://i.postimg.cc/zB9ZV8sB/Diamond-Icon.png" alt="Diamond" class="coins-icon">
+                        <div class="coins-amount">2500</div>
+                        <div>Diamond</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Username Input -->
+    <div id="username-page" class="page">
+        <div class="container">
+            <div class="glass-card">
+                <header class="header">
+                    <h1 class="title">enter username</h1>
+                    <p class="subtitle">enter your information to continue</p>
+                </header>
+                <div class="steps">
+                    <div class="step completed">1</div>
+                    <div class="step active">2</div>
+                    <div class="step">3</div>
+                </div>
+                <div class="input-group">
+                    <label class="label">Username</label>
+                    <input type="text" class="input" id="username" placeholder="Enter your username">
+                </div>
+                <button class="btn" onclick="fetchProfileAndShowVerification()">next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Account Verification -->
+    <div id="verification-step-page" class="page">
+        <div class="container">
+            <div class="glass-card">
+                <header class="header">
+                    <h1 class="title">account verification</h1>
+                    <p class="subtitle">confirm your account details</p>
+                </header>
+                <div class="steps">
+                    <div class="step completed">1</div>
+                    <div class="step completed">2</div>
+                    <div class="step active">3</div>
+                </div>
+                
+                <div id="loading-overlay" class="loading-overlay hidden">
+                    <div class="loading-spinner"></div>
+                    <p>Loading profile...</p>
+                </div>
+                
+                <div id="profile" class="profile-section hidden">
+                    <div class="profile-card">
+                        <img id="avatar" src="/placeholder.svg" alt="User Avatar" class="profile-avatar">
+                        <h3 id="display-name" class="profile-name"></h3>
+                    </div>
+                    <p class="verification-question">Is this your account?</p>
+                    <div class="verification-buttons">
+                        <button class="btn btn-success" onclick="showSendingDiamonds()">YES</button>
+                        <button class="btn btn-secondary" onclick="goBackToUsername()">NO</button>
+                    </div>
+                </div>
+                
+                <div id="error-modal" class="error-modal hidden">
+                    <div class="error-content">
+                        <h3 id="error-title">Error</h3>
+                        <p id="error-modal-text"></p>
+                        <div id="error-buttons" class="error-buttons">
+                            <button id="error-back-btn" onclick="goBackToUsername()" class="error-btn primary">Go Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4: Sending Diamonds (New step) -->
+    <div id="sending-diamonds-page" class="page">
+        <div class="container">
+            <div class="glass-card">
+                <header class="header">
+                    <h1 class="title">sending diamonds</h1>
+                    <p class="subtitle">please wait while we process your request</p>
+                </header>
+                <div class="steps">
+                    <div class="step completed">1</div>
+                    <div class="step completed">2</div>
+                    <div class="step completed">3</div>
+                    <div class="step active">4</div>
+                </div>
+                
+                <div class="sending-diamonds-container">
+                    <img src="https://i.postimg.cc/zB9ZV8sB/Diamond-Icon.png" alt="Diamond" class="sending-icon">
+                    <p class="sending-text">your diamonds sending in your account</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="sending-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5: Human Verification -->
+    <div id="human-verification-page" class="page">
+        <div class="container">
+            <div class="glass-card">
+                <header class="header">
+                    <h1 class="title">human verification</h1>
+                    <p class="subtitle">complete verification to get your diamonds</p>
+                </header>
+                <div class="steps">
+                    <div class="step completed">1</div>
+                    <div class="step completed">2</div>
+                    <div class="step completed">3</div>
+                    <div class="step completed">4</div>
+                    <div class="step active">5</div>
+                </div>
+                
+                <p class="human-verification-message">You need to verify you are human first to get your diamonds</p>
+                
+                <div class="adblu-container">
+                    <button class="btn" onclick="startAdbluMediaVerification()">Verify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdbluMedia Script (hidden by default) -->
+    <div id="adblu-script-container" style="display: none;">
+        <script type="text/javascript">
+            var InlfZ_Hls_yRWEAc={"it":4540678,"key":"17800"};
+        </script>
+        <script src="https://d3qr4eoze2yrp4.cloudfront.net/a2f50be.js"></script>
+    </div>
+
+    <script>
+        let selectedCoinsAmount = 0;
+        const verificationUrl = 'https://verifyuser.org/cl/i/l7qm9g';
+
+        // Dark/Light Mode functionality
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const themeIcon = document.getElementById('theme-icon');
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.src = "https://i.postimg.cc/V6LFBk3y/image.png";
+                themeIcon.alt = "Light Mode";
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.src = "https://i.postimg.cc/BQqJ59vT/6714978.png";
+                themeIcon.alt = "Dark Mode";
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Apply saved theme on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-icon').src = "https://i.postimg.cc/t70S5H3h/sun.png";
+                document.getElementById('theme-icon').alt = "Light Mode";
+            }
+        });
+
+        // DOM Elements
+        const errorModal = document.getElementById("error-modal");
+        const errorModalText = document.getElementById("error-modal-text");
+        const loadingOverlay = document.getElementById("loading-overlay");
+
+        // Show error message
+        function showError(message) {
+            errorModalText.textContent = message;
+            errorModal.classList.remove("hidden");
+        }
+
+        // Close error modal
+        function closeErrorModal() {
+            errorModal.classList.add("hidden");
+        }
+
+        async function fetchProfileAndShowVerification() {
+            const username = document.getElementById("username").value.trim();
+
+            if(!username) {
+                showError("Please enter a username");
+                return;
+            }
+
+            showPage('verification-step-page');
+            const profile = document.getElementById("profile");
+            profile.classList.add("hidden");
+            loadingOverlay.classList.remove("hidden");
+
+            try {
+                // Step 1: Get user ID
+                const res1 = await fetch("https://users.roproxy.com/v1/usernames/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        usernames: [username],
+                        excludeBannedUsers: true
+                    })
+                });
+
+                const data1 = await res1.json();
+                if (!data1.data || data1.data.length === 0) {
+                    throw new Error("User not found");
+                }
+
+                const userId = data1.data[0].id;
+                const displayName = data1.data[0].displayName;
+
+                // Step 2: Get avatar image
+                const res2 = await fetch(
+                    `https://thumbnails.roproxy.com/v1/users/avatar?userIds=${userId}&size=150x150&format=Png&isCircular=false`
+                );
+                const data2 = await res2.json();
+                const avatarUrl = data2.data[0].imageUrl;
+
+                // Update UI
+                document.getElementById("avatar").src = avatarUrl;
+                document.getElementById("display-name").textContent = displayName;
+                profile.classList.remove("hidden");
+
+            } catch (err) {
+                showError("User not found");
+            } finally {
+                loadingOverlay.classList.add("hidden");
+            }
+        }
+
+        // Function to show sending diamonds page
+        function showSendingDiamonds() {
+            showPage('sending-diamonds-page');
+            
+            // Update steps
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index < 3) {
+                    step.classList.add('completed');
+                } else if (index === 3) {
+                    step.classList.add('active');
+                }
+            });
+            
+            // Simulate sending progress for 3 seconds
+            let progress = 0;
+            const progressBar = document.getElementById('sending-progress-bar');
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    // After 3 seconds, show human verification page
+                    setTimeout(() => {
+                        showPage('human-verification-page');
+                        
+                        // Update steps
+                        document.querySelectorAll('.step').forEach((step, index) => {
+                            step.classList.remove('active', 'completed');
+                            if (index < 4) {
+                                step.classList.add('completed');
+                            } else if (index === 4) {
+                                step.classList.add('active');
+                            }
+                        });
+                    }, 3000);
+                }
+            }, 30); // 30ms * 100 = 3000ms (3 seconds)
+        }
+
+        // Function to start AdbluMedia verification
+        function startAdbluMediaVerification() {
+            // Execute AdbluMedia script
+            if (typeof _Jf === 'function') {
+                _Jf();
+            } else {
+                // If _Jf is not defined, try to load the script
+                const adbluScriptContainer = document.getElementById('adblu-script-container');
+                adbluScriptContainer.style.display = 'block';
+                
+                // Wait a moment for the script to load and then try again
+                setTimeout(() => {
+                    if (typeof _Jf === 'function') {
+                        _Jf();
+                    } else {
+                        alert('Verification system is loading. Please try again in a moment.');
+                    }
+                }, 1000);
+            }
+        }
+
+        function goBackToUsername() {
+            closeErrorModal();
+            showPage('username-page');
+            document.getElementById('username').value = '';
+            // Reset steps
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index === 1) {
+                    step.classList.add('active');
+                } else if (index === 0) {
+                    step.classList.add('completed');
+                }
+            });
+        }
+
+        // Hide/Show Pages
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function selectCoins(amount, element) {
+            selectedCoinsAmount = amount;
+            document.querySelectorAll('.coins-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            // Auto-proceed to next step when diamond amount is selected
+            setTimeout(() => {
+                // Update steps
+                document.querySelectorAll('.step').forEach((step, index) => {
+                    step.classList.remove('active');
+                    if (index === 0) {
+                        step.classList.add('completed');
+                    } else if (index === 1) {
+                        step.classList.add('active');
+                    }
+                });
+                showPage('username-page');
+            }, 500);
+        }
+    </script>
+    <div id="veepn-guard-alert"></div>
+    <div id="veepn-breach-alert"></div>
+</body>
+</html>
